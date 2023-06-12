@@ -46,7 +46,6 @@ group :development do
   # gem "spring"
 end
 
-
 gem 'dotenv-rails', groups: %i[development test]
 
 gem 'devise'
