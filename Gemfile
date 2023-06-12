@@ -47,6 +47,6 @@ group :development do
 end
 
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: %i[development test]
 
 gem 'devise'
