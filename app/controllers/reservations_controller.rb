@@ -32,6 +32,7 @@ class ReservationsController < ApplicationController
       return
     end
 
+    Room.where(id: @reservation.rooms_id).update(reservations_id: nil)
     if @reservation.destroy
       render json: { message: 'reservation successfully deleted' }
     else
