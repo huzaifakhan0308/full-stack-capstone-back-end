@@ -46,6 +46,8 @@ group :development do
   # gem "spring"
 end
 
+gem 'bcrypt'
+
 gem 'dotenv-rails', groups: %i[development test]
 
 gem 'devise'

@@ -177,6 +177,7 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  bcrypt
   bootsnap
   debug
   devise
