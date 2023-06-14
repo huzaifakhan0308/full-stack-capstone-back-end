@@ -4,10 +4,13 @@ class Room < ApplicationRecord
   validates :room_name, :description, :room_service, :beds, :image_url, presence: true
   after_create :increment_user_rooms_count
   after_destroy :decrement_user_rooms_count
+
   private
+
   def increment_user_rooms_count
     user.increment!(:rooms_count)
   end
+
   def decrement_user_rooms_count
     user.decrement!(:rooms_count)
   end

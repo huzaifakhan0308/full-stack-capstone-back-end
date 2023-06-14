@@ -19,13 +19,11 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     if params[:password].blank? || (!@user.authenticate(params[:password]) || !@user.login)
       render json: { error: 'Incorrect password or user not logged in' },
-            status: :unprocessable_entity
+             status: :unprocessable_entity
+    elsif @room.save
+      render json: @room, status: :created, location: user_room_url(@user, @room)
     else
-      if @room.save
-        render json: @room, status: :created, location: user_room_url(@user, @room)
-      else
-        render json: @room.errors, status: :unprocessable_entity
-      end
+      render json: @room.errors, status: :unprocessable_entity
     end
   end
 

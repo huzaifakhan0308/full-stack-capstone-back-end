@@ -16,15 +16,13 @@ class ReservationsController < ApplicationController
 
     if params[:password].blank? || (!@user.authenticate(params[:password]) || !@user.login)
       render json: { error: 'Incorrect password or user not logged in' },
-      status: :unprocessable_entity
+             status: :unprocessable_entity
+    elsif @reservation.save
+      Room.where(id: @reservation.rooms_id).update(reservations_id: @reservation.id)
+      render json: @reservation, status: :created,
+             location: user_reservation_url(@reservation.users_id, @reservation)
     else
-      if @reservation.save
-        Room.where(id: @reservation.rooms_id).update(reservations_id: @reservation.id)
-        render json: @reservation, status: :created,
-        location: user_reservation_url(@reservation.users_id, @reservation)
-      else
-        render json: @reservation.errors, status: :unprocessable_entity
-      end
+      render json: @reservation.errors, status: :unprocessable_entity
     end
   end
 
