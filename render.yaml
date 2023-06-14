@@ -1,0 +1,18 @@
+databases:
+  - name: my-personal-database
+    databaseName: budget_app_ha7s
+    user: budget_app_ha7s_user
+
+services:
+  - type: web
+    name: full_stack_capstone_back_end
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: full_stack_capstone_back_end
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
