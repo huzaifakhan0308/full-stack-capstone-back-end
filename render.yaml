@@ -1,7 +1,7 @@
 databases:
   - name: my-personal-database
-    databaseName: budget_app_ha7s
-    user: budget_app_ha7s_user
+    databaseName: my_personal_database
+    user: my_personal_database_user
 
 services:
   - type: web
@@ -12,7 +12,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: full_stack_capstone_back_end
+          name: my-personal-database
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
