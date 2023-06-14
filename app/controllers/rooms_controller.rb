@@ -10,29 +10,29 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:room][:users_id])
     if @user.rooms_count >= 5
       render json: { error: 'User cannot create more then 5 rooms' }, status: :unprocessable_entity
       return
     end
 
     @room = Room.new(room_params)
-
-    if @room.save
-      render json: @room, status: :created, location: user_room_url(@room.user, @room)
+    if params[:password].blank? || (!@user.authenticate(params[:password]) || !@user.login)
+      render json: { error: 'Incorrect password or user not logged in' },
+             status: :unprocessable_entity
+    elsif @room.save
+      render json: @room, status: :created, location: user_room_url(@user, @room)
     else
-      puts @room.errors.full_messages
       render json: @room.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @room = Room.find(params[:id])
-
     @user = User.find(@room.users_id)
 
-    if params[:password].blank? || !@user.authenticate(params[:password])
-      render json: { error: 'Incorrect password' }, status: :unauthorized
+    if params[:password].blank? || (!@user.authenticate(params[:password]) || !@user.login)
+      render json: { error: 'Incorrect password or user not logged in' }, status: :unauthorized
       return
     end
 
