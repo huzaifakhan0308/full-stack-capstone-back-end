@@ -15,7 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_230056) do
   enable_extension "plpgsql"
 
   create_table "reservations", force: :cascade do |t|
-    t.date "date"
+    t.date "from_date"
+    t.date "to_date"
     t.string "city"
     t.bigint "users_id", null: false
     t.bigint "rooms_id", null: false
@@ -45,12 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_230056) do
     t.string "username"
     t.string "password_digest"
     t.integer "rooms_count", default: 0
+    t.boolean "login", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "reservations", "rooms", column: "rooms_id"
   add_foreign_key "reservations", "users", column: "users_id"
-  add_foreign_key "rooms", "reservations", column: "reservations_id"
+  add_foreign_key "rooms", "reservations", column: "reservations_id", on_delete: :cascade
   add_foreign_key "rooms", "users", column: "users_id"
 end

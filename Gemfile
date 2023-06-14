@@ -47,3 +47,5 @@ group :development do
 end
 
 gem 'bcrypt'
+
+gem 'dotenv-rails', groups: %i[development test]

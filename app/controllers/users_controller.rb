@@ -24,7 +24,11 @@ class UsersController < ApplicationController
 
     if @user.authenticate(params[:user][:current_password])
       if @user.update(user_params.except(:current_password))
-        render json: @user
+        render json: { message: 'User updated successfully',
+        user_id: @user.id,
+        username: @user.username,
+        password: params[:user][:password]
+      }
       else
         render json: @user.errors, status: :unprocessable_entity
       end
@@ -34,15 +38,38 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:username])
 
-    password = params[:password]
-
-    if @user.authenticate(password)
+    if @user.authenticate(params[:password])
       @user.destroy
       head :no_content
     else
       render json: { error: 'Invalid password' }, status: :unprocessable_entity
+    end
+  end
+
+  def login
+    @user = User.find_by(username: params[:username])
+    if @user.authenticate(params[:password])
+      @user.update(login: true)
+      render json: { message: 'User login successfully',
+        user_id: @user.id,
+        username: @user.username,
+        password: params[:password]
+      }
+    else
+      render json: { error: 'Invalid username or password' }, status: :unauthorized
+    end
+  end
+
+  def logout
+    @user = User.find_by(username: params[:username])
+    if @user.authenticate(params[:password])
+      @user.update(login: false)
+      @user.save
+      render json: { message: 'User logged out successfully' }
+    else
+      render json: { message: 'Invalid username or password' }
     end
   end
 
