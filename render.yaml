@@ -1,7 +1,7 @@
 databases:
   - name: my-personal-database
-    databaseName: my_personal_database
-    user: my_personal_database_user
+    databaseName: my_personal_database_ql43
+    user: my_personal_database_ql43_user
 
 services:
   - type: web
