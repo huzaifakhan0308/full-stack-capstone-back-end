@@ -17,7 +17,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_230056) do
   create_table "reservations", force: :cascade do |t|
     t.date "from_date"
     t.date "to_date"
-    t.string "city"
     t.bigint "users_id", null: false
     t.bigint "rooms_id", null: false
     t.datetime "created_at", null: false
@@ -34,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_230056) do
     t.string "room_service"
     t.integer "beds"
     t.string "image_url"
+    t.string "address"
     t.bigint "users_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

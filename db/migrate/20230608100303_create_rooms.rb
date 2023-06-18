@@ -8,6 +8,7 @@ class CreateRooms < ActiveRecord::Migration[7.0]
       t.string :room_service
       t.integer :beds
       t.string :image_url
+      t.string :address
       t.references :users, null: false, foreign_key: true
 
       t.timestamps
