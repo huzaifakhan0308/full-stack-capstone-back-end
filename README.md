@@ -1,59 +1,55 @@
-# Hotel Booking App
+<a name="readme-top"></a>
+
 # 📗 Table of Contents
 
-- [📗 Table of Contents](#-table-of-contents)
-  - [🛠 Built With ](#-built-with-)
-    - [Tech Stack ](#tech-stack-)
-    - [Key Features ](#key-features-)
+- [📖 About the Project](#about-project)
+  - [:camera: screenshots](#screenshots)
+  - [🛠 Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
     - [🚀 Live Demo](#live-demo)
-    - [🎬 Video Description](#video-demo)
-  - [💻 Getting Started ](#-getting-started-)
-    - [Prerequisites](#prerequisites)
-    - [Setup](#setup)
-    - [Install](#install)
-    - [Usage](#usage)
-  - [👥 Author ](#-author-)
-  - [🔭 Future Features ](#-future-features-)
-  - [🤝 Contributing ](#-contributing-)
-  - [⭐️ Show your support ](#️-show-your-support-)
-  - [🙏 Acknowledgments ](#-acknowledgments-)
-  - [📝 License ](#-license-)
+- [💻 Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Usage](#usage)
+- [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
 
-# 📖 Hotel Booking App <a name="about-project"></a>
+- [📝 License](#license)
 
-This GitHub repository hosts a full stack hotel booking application developed using the Ruby on Rails framework, React.js, and PostgreSQL. The application provides users with a seamless experience to search, browse, and book hotel accommodations. The repository provides a comprehensive codebase for customization and extension.
+# 🏥 Hotels Resrvation API <a name="about-project"></a>
+
+> The Hotels Resrvation API allows users to create account and create new Rooms and can reserved the room.
+
+### Frontend Repository
+  <a href="https://github.com/huzaifakhan0308/full-stack-capstone-front-end">Final capstone front end</a>
+
+## :camera: screenshots <a name="screenshots"></a>
+
+  <img src="app/images/api.png" alt="">
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-  <ul>
-    <li><a href="https://rubyonrails.org/">Ruby on Rails</a></li>
-  </ul>
+- <a href="https://www.ruby-lang.org/es/">ROR</a>
+- <a href="https://www.postgresql.org/">Postgresql</a>
+- <a href="https://rspec.info/">Rspec</a>
+
+### :rocket: Live API Demo <a name="live-demo"></a>
+
+  - <a href="https://hotels-reservations.onrender.com/api-docs/index.html">Live Link</a>
 
 ### Key Features <a name="key-features"></a>
 
-- **[Authenticated signup/signin]**
-- **[Add new category]**
+- [x] Create user based on role
+- [x] Create room and view all rooms
+- [x] Create reservations and view all reservations
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-Click on the link to view the app.
-
-- [Live Demo]()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🚀 Video Description <a name="live-demo"></a>
-
-Click on the link to view the video description.
-
-- [Video Description]()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
@@ -63,58 +59,83 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-- Ruby
-- Rails
+- Command line or terminal
+- IDE such as VsCode.
+- Rails needs to be installed on your system.
 
-### SetUp
+### Setup
 
-Clone this Repository to your desired folder:
+Clone this repository to your desired folder:
+Example command:
 
-``` sh
-cd my-folder
-git clone git@github.com:huzaifakhan0308/full-stack-capstone-back-end.git
+```sh
+  git clone https://github.com/huzaifakhan0308/full-stack-capstone-back-end.git
+  cd full-stack-capstone-back-end
+
 ```
-### Install 
-Install this project with:
- 
-``` sh
-bundle install
+
+### Install
+
+Example command:
+
+```sh
+  cd full-stack-capstone-back-end
+  bundle install (install all dependencies)
+  rails db:create (to create database)
+  rails db:migrate (to migrate tables)
+
 ```
 
 ### Usage
-To run the project, execute the following command:
-``` sh
-rails s
+
+To run the project redirecting to the root directory of the project and run the following command:
+
+```sh
+ bin/rails server (to run web API)
+
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Test
 
-## 👥 Author <a name="author"></a>
+To test the web app run the following command:
+
+```sh
+ rspec spec ( to test the web API)
+
+```
+
+## 👥 Authors <a name="authors"></a>
+
+👤 **Huzaifa khan**
+
+- GitHub: [@huzaifakhan0308](https://github.com/huzaifakhan0308)
+- Twitter: [@huzaifakhan0308](https://twitter.com/home?lang=en)
+- LinkedIn: [huzaifa khan](https://www.linkedin.com/in/huzaifa-khan-938140256/)
+
 👤 **Jitender Kumar**
 
 - GitHub: [@ohyajk](https://github.com/ohyajk)
-- LinkedIn: [@Jitender Kumar](https://www.linkedin.com/in/ohyajk/)
+- Twitter: [@ohyajk](https://twitter.com/ohyajk)
+- LinkedIn: [@ohyajk](https://www.linkedin.com/in/ohyajk/)
 
 👤 **Mark Fenekayas**
 
 - GitHub: [@Fene-87](https://github.com/Fene-87)
+- Twitter: [@markfen4](https://twitter.com/markfen4)
 - LinkedIn: [@Mark Fenekayas](https://www.linkedin.com/in/mark-fenekayas/)
 
-👤 **Aubin Simpeze**
+👤 **Aubin SIMPEZE**
 
-- GitHub: [@aubinleyoung](https://github.com/aubinleyoung)
-- LinkedIn: [@Aubin Simpeze](https://www.linkedin.com/in/aubin-simpeze-7a5b7a220/)
+- GitHub: [@githubhandle](https://github.com/aubinleyoung)
+- Twitter: [@twitterhandle](https://twitter.com/Aubin_Simpeze)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/aubin-simpeze/)
 
-👤 **Huzaifa Khan**
-
-- GitHub: [@huzaifakhan0308](https://github.com/huzaifakhan0308)
-- LinkedIn: [@Huzaifa Khan](https://www.linkedin.com/in/huzaifakhan03/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Connect API]**
+- [add comments for and likes rooms]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -122,22 +143,19 @@ rails s
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/huzaifakhan0308/full-stack-capstone-back-end/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project consider giving it a star ⭐️.
+Give a ⭐️ if you like this project!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-We would like to thank the entire Microverse community for the support given to us while creating this application.
-
-- LazyCoders
-- Coding Partners
+-  We would like to thank microverse community for the support and guidance, Thank you [Murat Korkmaz](https://www.behance.net/muratk)  on Behance for the Awesome Design Template.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
