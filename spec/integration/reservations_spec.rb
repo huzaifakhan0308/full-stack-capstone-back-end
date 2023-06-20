@@ -1,7 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'Reservations API', type: :request do
-  path '/users/{user_id}/reservations' do
+  path '/users/{id}/reservations' do
     get 'Retrieves all reservations for a user' do
       tags 'Reservations'
       produces 'application/json'
@@ -100,7 +100,7 @@ RSpec.describe 'Reservations API', type: :request do
     end
   end
 
-  path '/reservations/{id}' do
+  path '/users/{id}/reservations/{id}' do
     delete 'Deletes a reservation' do
       tags 'Reservations'
       produces 'application/json'

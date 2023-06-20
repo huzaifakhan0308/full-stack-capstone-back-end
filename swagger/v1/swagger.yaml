@@ -4,7 +4,7 @@ info:
   title: Bookease API V1
   version: v1
 paths:
-  "/users/{user_id}/reservations":
+  "/users/{id}/reservations":
     get:
       summary: Retrieves all reservations for a user
       tags:
@@ -87,7 +87,7 @@ paths:
               - to_date
               - users_id
               - rooms_id
-  "/reservations/{id}":
+  "/users/{id}/reservations/{id}":
     delete:
       summary: Deletes a reservation
       tags:
@@ -109,7 +109,7 @@ paths:
           description: incorrect password or user not logged in
         '404':
           description: reservation not found
-  "/rooms":
+  "/users/{id}/rooms":
     get:
       summary: Retrieves all rooms
       tags:
@@ -199,7 +199,7 @@ paths:
               - image_url
               - address
               - users_id
-  "/rooms/{id}":
+  "/users/{id}/rooms/{id}":
     get:
       summary: Retrieves a specific room
       tags:
@@ -299,6 +299,43 @@ paths:
               - username
               - password
               - password_confirmation
+    get:
+      summary: Retrieves all user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  password_digest:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - username
+                - created_at
+                - updated_at
+        '404':
+          description: user not found
   "/users/{id}":
     get:
       summary: Retrieves a user

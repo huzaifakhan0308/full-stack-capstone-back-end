@@ -37,6 +37,34 @@ describe 'Users API' do
     end
   end
 
+  path '/users' do
+    get 'Retrieves all user' do
+      tags 'Users'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :integer
+
+      response '200', 'user found' do
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 username: { type: :string },
+                 password_digest: { type: :string },
+                 created_at: { type: :string, format: 'date-time' },
+                 updated_at: { type: :string, format: 'date-time' }
+               },
+               required: %w[id username created_at updated_at]
+
+        let(:id) { User.create(username: 'testuser', password: 'password', password_confirmation: 'password').id }
+        run_test!
+      end
+
+      response '404', 'user not found' do
+        let(:id) { 'invalid_id' }
+        run_test!
+      end
+    end
+  end
+
   path '/users/{id}' do
     get 'Retrieves a user' do
       tags 'Users'
