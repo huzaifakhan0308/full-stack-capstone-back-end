@@ -1,7 +1,7 @@
 require 'swagger_helper'
 
 describe 'Rooms API' do
-  path '/rooms' do
+  path 'users/{id}/rooms' do
     get 'Retrieves all rooms' do
       tags 'Rooms'
       produces 'application/json'
