@@ -1,0 +1,479 @@
+---
+openapi: 3.0.1
+info:
+  title: Bookease API V1
+  version: v1
+paths:
+  "/users/{id}/reservations":
+    get:
+      summary: Retrieves all reservations for a user
+      tags:
+      - Reservations
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: reservations found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    from_date:
+                      type: string
+                      format: date
+                    to_date:
+                      type: string
+                      format: date
+                    users_id:
+                      type: integer
+                    rooms_id:
+                      type: integer
+                  required:
+                  - id
+                  - from_date
+                  - to_date
+                  - users_id
+                  - rooms_id
+        '404':
+          description: user not found
+    post:
+      summary: Creates a reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: password
+        in: query
+        schema:
+          type: string
+      responses:
+        '201':
+          description: reservation created
+        '422':
+          description: already reserved
+        '401':
+          description: incorrect password or user not logged in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                from_date:
+                  type: string
+                  format: date
+                to_date:
+                  type: string
+                  format: date
+                users_id:
+                  type: integer
+                rooms_id:
+                  type: integer
+              required:
+              - from_date
+              - to_date
+              - users_id
+              - rooms_id
+  "/users/{id}/reservations/{id}":
+    delete:
+      summary: Deletes a reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: password
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: reservation deleted
+        '401':
+          description: incorrect password or user not logged in
+        '404':
+          description: reservation not found
+  "/users/{id}/rooms":
+    get:
+      summary: Retrieves all rooms
+      tags:
+      - Rooms
+      responses:
+        '200':
+          description: rooms found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    room_name:
+                      type: string
+                    description:
+                      type: string
+                    wifi:
+                      type: boolean
+                    tv:
+                      type: boolean
+                    room_service:
+                      type: boolean
+                    beds:
+                      type: integer
+                    image_url:
+                      type: string
+                    address:
+                      type: string
+                    users_id:
+                      type: integer
+                  required:
+                  - id
+                  - room_name
+                  - description
+                  - wifi
+                  - tv
+                  - room_service
+                  - beds
+                  - image_url
+                  - address
+                  - users_id
+    post:
+      summary: Creates a room
+      tags:
+      - Rooms
+      parameters: []
+      responses:
+        '201':
+          description: room created
+        '422':
+          description: incorrect password or user not logged in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                room_name:
+                  type: string
+                description:
+                  type: string
+                wifi:
+                  type: boolean
+                tv:
+                  type: boolean
+                room_service:
+                  type: boolean
+                beds:
+                  type: integer
+                image_url:
+                  type: string
+                address:
+                  type: string
+                users_id:
+                  type: integer
+              required:
+              - room_name
+              - description
+              - wifi
+              - tv
+              - room_service
+              - beds
+              - image_url
+              - address
+              - users_id
+  "/users/{id}/rooms/{id}":
+    get:
+      summary: Retrieves a specific room
+      tags:
+      - Rooms
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: room found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  room_name:
+                    type: string
+                  description:
+                    type: string
+                  wifi:
+                    type: boolean
+                  tv:
+                    type: boolean
+                  room_service:
+                    type: boolean
+                  beds:
+                    type: integer
+                  image_url:
+                    type: string
+                  address:
+                    type: string
+                  users_id:
+                    type: integer
+                required:
+                - id
+                - room_name
+                - description
+                - wifi
+                - tv
+                - room_service
+                - beds
+                - image_url
+                - address
+                - users_id
+        '404':
+          description: room not found
+    delete:
+      summary: Deletes a room
+      tags:
+      - Rooms
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: password
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: room deleted
+        '401':
+          description: incorrect password or user not logged in
+        '404':
+          description: room not found
+  "/users":
+    post:
+      summary: Creates a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - username
+              - password
+              - password_confirmation
+    get:
+      summary: Retrieves all user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  password_digest:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - username
+                - created_at
+                - updated_at
+        '404':
+          description: user not found
+  "/users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  password_digest:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - username
+                - created_at
+                - updated_at
+        '404':
+          description: user not found
+    put:
+      summary: Updates a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: user updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  user_id:
+                    type: integer
+                  username:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - message
+                - user_id
+                - username
+                - password
+        '422':
+          description: invalid request
+        '401':
+          description: invalid current password
+    delete:
+      summary: Deletes a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: user deleted
+        '401':
+          description: invalid credentials
+  "/users/login":
+    post:
+      summary: Logs in a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged in
+        '401':
+          description: invalid credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - password
+  "/users/logout":
+    post:
+      summary: Logs out a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged out
+        '401':
+          description: invalid credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - password
+servers:
+- url: https://hotels-reservations.onrender.com
+  variables:
+    defaultHost:
+      default: https://hotels-reservations.onrender.com
