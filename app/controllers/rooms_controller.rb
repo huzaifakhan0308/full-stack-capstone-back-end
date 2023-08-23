@@ -29,12 +29,12 @@ class RoomsController < ApplicationController
 
   def destroy
     @room = Room.find(params[:id])
-    @user = User.find(@room.users_id)
+    # @user = User.find(@room.users_id)
 
-    if params[:password].blank? || (!@user.authenticate(params[:password]) || !@user.login)
-      render json: { error: 'Incorrect password or user not logged in' }, status: :unauthorized
-      return
-    end
+    # if params[:password].blank? || (!@user.authenticate(params[:password]) || !@user.login)
+    #   render json: { error: 'Incorrect password or user not logged in' }, status: :unauthorized
+    #   return
+    # end
 
     if @room.destroy
       render json: { message: 'Room successfully deleted' }
